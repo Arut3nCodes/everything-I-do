@@ -4,12 +4,17 @@ public class Node {
     private Node left;
     private Node right;
     private int priority;
-    private char character;
+    private Character character;
 
-    public Node(int priority, char character) {
+    public Node(){
         this.left = null;
         this.right = null;
-        this.priority = priority;
+        character = null;
+    }
+    public Node(char character) {
+        this.left = null;
+        this.right = null;
+        this.priority = 1;
         this.character = character;
     }
 
@@ -37,7 +42,7 @@ public class Node {
         this.priority = priority;
     }
 
-    public char getCharacter() {
+    public Character getCharacter() {
         return character;
     }
 
