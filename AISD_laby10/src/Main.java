@@ -7,6 +7,7 @@ public class Main {
         fe.createHuffmanTree();
         //System.out.println(fe.getHtree().howManyLeaves(fe.getHtree().getRoot()));
         fe.printOutInformation();
+        System.out.println(fe.encodeText());
 
     }
 }

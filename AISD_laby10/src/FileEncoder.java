@@ -85,10 +85,15 @@ public class FileEncoder {
         htree.setRoot(pq.dequeue());
     }
 
+    String code(char c){
+        StringBoolean sb = htree.getCode(c, htree.getRoot(), new StringBoolean("", false));
+        return sb.getString();
+    }
+
     public void printOutInformation(){
         for(Node node: chList){
-            StringBoolean sb = htree.getCode(node.getCharacter(), htree.getRoot(), new StringBoolean("", false));
-            System.out.println(node.getCharacter() + " | "  + node.getPriority() + " | " + sb.getString());
+
+            System.out.println(node.getCharacter() + " | "  + node.getPriority() + " | " + code(node.getCharacter()));
         }
     }
 
@@ -105,8 +110,11 @@ public class FileEncoder {
 
     public String encodeText(){
         String encoded = "";
-
-
+        int length = getText().length();
+        String txt = getText();
+        for(int i = 0; i < length; i++){
+            encoded += code(txt.charAt(i));
+        }
 
         return encoded;
     }
