@@ -79,7 +79,7 @@ public class FileEncoder {
             n.setPriority(n.getLeft().getPriority() + n.getRight().getPriority());
             pq.enqueue(n);
 
-            pq = printOutPQInformation(pq);
+            //pq = printOutPQInformation(pq);
         }
 
         htree.setRoot(pq.dequeue());

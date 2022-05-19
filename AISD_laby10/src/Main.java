@@ -1,6 +1,5 @@
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello world!");
         FileEncoder fe = new FileEncoder();
         fe.readFromFile();
         fe.countCharacters();

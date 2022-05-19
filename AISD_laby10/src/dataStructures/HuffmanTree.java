@@ -57,10 +57,6 @@ public class HuffmanTree {
         if( !sb.isBool() && n.getLeft() != null){
             sb = getCode(c, n.getLeft(), sb);
 
-            if(n.getCharacter() != null){
-                System.out.print(c);
-            }
-
             if(sb.isBool()){
                 sb.setString("0" + sb.getString());
             }
