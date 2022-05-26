@@ -3,7 +3,8 @@ public class Equal {
         int framePerProcess = availableFrames/processes.length;
 
         for(Proces p: processes){
-            LRU l = new LRU(p, framePerProcess);
+            LRU l = new LRU(p, framePerProcess, 0);
+            l.printOut();
         }
     }
 }
