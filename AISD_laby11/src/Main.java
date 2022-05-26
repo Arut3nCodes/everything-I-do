@@ -21,14 +21,12 @@ public class Main {
             String line;
             while((line = br.readLine())!=null)
             {
-                System.out.println(line);
                 String [] splitted = line.split("[.,?!--  ]");
                 for (String s : splitted)
                 {
-                    RBNode node = rbt.searchNode(s.toLowerCase(Locale.ROOT));
-                    System.out.println(s.toLowerCase(Locale.ROOT));
+                    RBNode node = rbt.searchNode(s);
                     if ((s.length() == 1 && isGood(s) && node == null) || (s.length() > 1 && node == null))
-                        rbt.addNode(s.toLowerCase(Locale.ROOT), currLine);
+                        rbt.addNode(s, currLine);
 
                     else if (node != null)
                         node.addAppereance(currLine);
@@ -40,5 +38,7 @@ public class Main {
         }
 
        rbt.printOut();
+        System.out.println();
+        rbt.printOutSideways();
     }
 }

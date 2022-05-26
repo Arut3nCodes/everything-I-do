@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class RBTree {
     RBNode root;
     public RBTree(){
@@ -133,7 +135,8 @@ public class RBTree {
         }
 
         RBNode grandparent = parent.getUp();
-        if(grandparent == null){
+
+        if(grandparent == null){ //nie ma dziadka -> koniec rekurencji
             parent.setColor('B');
             return;
         }
@@ -152,8 +155,8 @@ public class RBTree {
 
         if(uncle != null && uncle.getColor() == 'R'){
             parent.setColor('B');
-            parent.setColor('R');
-            parent.setColor('B');
+            grandparent.setColor('R');
+            uncle.setColor('B');
 
             AddRBTreeFix(grandparent);
         }
@@ -166,7 +169,7 @@ public class RBTree {
             rotateRight(grandparent);
 
             parent.setColor('B');
-            parent.setColor('R');
+            grandparent.setColor('R');
         }
 
         else{
@@ -178,30 +181,48 @@ public class RBTree {
             rotateLeft(grandparent);
 
             parent.setColor('B');
-            parent.setColor('R');
+            grandparent.setColor('R');
         }
 
 
     }
 
-    private void inorder(RBNode node)
+    private void inOrder(RBNode node)
     {
         if (node.getLeft() != null)
         {
-            inorder(node.getLeft());
+            inOrder(node.getLeft());
         }
 
         node.printOut();
 
         if (node.getRight() != null)
         {
-            inorder(node.getRight());
+            inOrder(node.getRight());
         }
     }
 
     public void printOut(){
-        inorder(getRoot());
+        inOrder(getRoot());
     }
 
+    private void postOrder(RBNode node){
+
+    }
+
+    public void printOutSideways(){
+        ArrayList<RBNode> kolejka = new ArrayList<>();
+        kolejka.add(getRoot());
+        RBNode node;
+        while(!kolejka.isEmpty()){
+            node = kolejka.get(0);
+            System.out.print(node.color + " ");
+            node.printOut();
+
+            if(node.getLeft() != null) kolejka.add(node.getLeft());
+            if(node.getRight() != null) kolejka.add(node.getRight());
+            kolejka.remove(0);
+        }
+    }
 
 }
