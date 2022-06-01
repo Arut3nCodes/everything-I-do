@@ -1,6 +1,6 @@
 .data
-number1: .byte 0x00 0x03 0x33 0x33 0x33 0x33 0x0f
-number2: .byte 0x00 0x03 0x33 0x33 0x33 0x33 0x0f
+number1: .byte 0x33 0x33 0x33 0x33 0x0f
+number2: .byte 0x76 0x33 0x33 0x33 0x0f
 result: .space 10
 #Do czego wykorzystuje poszczegolne rejestry (w poczatkowej fazie tworzenia programu - wszystkie lokalne nadpisy zmieniaja )
 # a0 -> pierwsza liczba
@@ -24,6 +24,7 @@ main:
 	jal bcdPrint
 	la $a2, number2
 	jal bcdPrint
+	
 	li $v0, 10
 	syscall
 bcdAdd:
@@ -134,8 +135,6 @@ bcdAddition:
 	xori $t7, $t7, 1
 	bgt $t1, $a2, additionLoop
 	sb $t6, ($t1)
-	comebackCheck:
-	lbu $t6, ($t1)
 	beqz $t6, cutIfZero
 	additionGrandeGrandeFinale:
 	jr $t9	
@@ -143,18 +142,16 @@ bcdAddition:
 	
 	cutIfZero: #obcina zerowy bajt z przodu
 	# $t6 to liczba bitow do przesuniecia -> jest ona rowna liczbie cyfr skladnikow + 1
-	# $s0 to adres obecnego bajtu
 	# $t7 to adres nastepnego bajta
 	# $t8 przechowuje wartosc nastepnego bajta
-	move $s0, $t1
 	move $t6, $t4
 	addiu $t6, $t6, 1
 	cutIfZeroLoop:
-	beqz $t6, comebackCheck
-	addiu $t7, $s0, 1
+	beqz $t6, additionGrandeGrandeFinale
+	addiu $t7, $t1, 1
 	lbu $t8, ($t7)
-	sb $t8, ($s0)
-	move $s0, $t7
+	sb $t8, ($t1)
+	move $t1, $t7
 	subiu $t6, $t6, 1
 	b cutIfZeroLoop
 	
@@ -185,4 +182,33 @@ bcdPrint:
 	syscall
 	jr	$ra		# return
 
+	
 
+	
+	
+	
+	
+	
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+		
+		
+	
+		
+		
+	
+	
+	
+	
+		
+	
