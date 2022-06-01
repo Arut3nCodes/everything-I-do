@@ -16,7 +16,7 @@ public class Main {
     public static void main(String [] args){
         RBTree rbt = new RBTree();
         int currLine = 1;
-        try (BufferedReader br = new BufferedReader(new FileReader("src/doOdczytu.txt")))
+        try (BufferedReader br = new BufferedReader(new FileReader("src/aforyzm.txt")))
         {
             String line;
             while((line = br.readLine())!=null)
@@ -30,6 +30,8 @@ public class Main {
 
                     else if (node != null)
                         node.addAppereance(currLine);
+
+                   // rbt.printOutSideways();
                 }
                 currLine++;
             }
@@ -37,8 +39,11 @@ public class Main {
             e.printStackTrace();
         }
 
-       rbt.printOut();
+        rbt.printOut();
         System.out.println();
         rbt.printOutSideways();
+        rbt.deleteNode("rodziny");
+        System.out.println();
+        rbt.printOut();
     }
 }

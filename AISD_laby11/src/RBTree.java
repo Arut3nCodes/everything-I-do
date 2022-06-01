@@ -187,6 +187,43 @@ public class RBTree {
 
     }
 
+    private RBNode deleteNode(RBNode node, String key){
+        if (node == null)
+            return node;
+        if (key.compareTo(node.getKey()) < 0)
+            node.setLeft(deleteNode(node.getLeft(), key));
+        else if (key.compareTo(node.getKey()) > 0)
+            node.setRight(deleteNode(node.getRight(), key));
+
+        else {
+            if (node.getLeft() == null)
+                return node.getRight();
+            else if (node.getRight() == null)
+                return node.getLeft();
+
+            // node with two children: Get the inorder
+            // successor (smallest in the right subtree)
+            node.setKey(minValue(node.getRight()));
+
+            // Delete the inorder successor
+            node.setRight(deleteNode(node.getRight(), node.getKey()));
+        }
+        return node;
+    }
+
+    private String minValue(RBNode node){
+        String mv = node.getKey();
+        while(node.getLeft() != null){
+            mv = node.getLeft().getKey();
+            node = node.getLeft();
+        }
+        return mv;
+    }
+
+    public void deleteNode(String key){
+        deleteNode(getRoot(), key);
+    }
+
     private void inOrder(RBNode node)
     {
         if (node.getLeft() != null)
