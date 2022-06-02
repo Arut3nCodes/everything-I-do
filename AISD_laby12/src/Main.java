@@ -1,6 +1,5 @@
 public class Main {
     public static void main(String[] args){
-        Graph graf = new Graph();
         DijkstraAlgorithm da = new DijkstraAlgorithm();
         Node node1 = new Node(0,"Wroclaw");
         Node node2 = new Node(1,"Olawa");
@@ -16,17 +15,17 @@ public class Main {
         node4.addNeighbour(node3, 20);
         node4.addNeighbour(node5, 60);
 
-        graf.addNode(node1);
-        graf.addNode(node2);
-        graf.addNode(node3);
-        graf.addNode(node4);
-        graf.addNode(node5);
+        da.addNode(node1);
+        da.addNode(node2);
+        da.addNode(node3);
+        da.addNode(node4);
+        da.addNode(node5);
 
-        graf.printOutAllNodesWithNeighbours();
-        graf.accesibleCities(node1);
+        da.graph.printOutAllNodesWithNeighbours();
+        da.graph.accesibleCities(node1);
 
-        graf = da. ShortestPathFromSource(graf, node1);
-        graf.printOutAllNodesWithShortestPaths(node1);
+        da.ShortestPathFromSource(node1);
+        da.graph.printOutAllNodesWithShortestPaths(node1);
 
     }
 }

@@ -1,7 +1,16 @@
 import java.util.HashSet;
 
 public class DijkstraAlgorithm {
-        public Graph ShortestPathFromSource(Graph graph, Node source) {
+        Graph graph;
+
+        DijkstraAlgorithm(){
+            graph = new Graph();
+        }
+
+        void addNode(Node node){
+            graph.addNode(node);
+        }
+        void ShortestPathFromSource(Node source) {
             source.distance = 0;
 
             HashSet<Node> setNodes = new HashSet<>();
@@ -22,10 +31,9 @@ public class DijkstraAlgorithm {
                 }
                 setNodes.add(currNode);
             }
-            return graph;
         }
 
-    private Node getLowestDistanceNode(HashSet<Node> unsetNodes) {
+    Node getLowestDistanceNode(HashSet<Node> unsetNodes) {
         Node lowestDistanceNode = null;
         int lowestDistance = Integer.MAX_VALUE;
         for (Node node: unsetNodes) {
@@ -38,7 +46,7 @@ public class DijkstraAlgorithm {
         return lowestDistanceNode;
     }
 
-    private void calcMinDist(Node sourceNode, Node evaluatedNode, int pathLength) {
+    void calcMinDist(Node sourceNode, Node evaluatedNode, int pathLength) {
         int sourceDistance = sourceNode.distance;
         if (sourceDistance + pathLength < evaluatedNode.distance) {
             evaluatedNode.distance = sourceDistance + pathLength;
