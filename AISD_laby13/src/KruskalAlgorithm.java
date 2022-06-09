@@ -69,14 +69,19 @@ public class KruskalAlgorithm {
     }
 
     public void getConnectionsWithShortestDistance(){
-        System.out.println("Polaczenia");
+        System.out.println("\nPolaczenia ostateczne:\n");
         int sumDist = 0;
+
+        if(connections.isEmpty()){
+            System.out.println("BRAK");
+        }
+
         for(Connection c: connections){
             System.out.println(c.toString());
             sumDist += c.getDistance();
         }
 
-        System.out.println("Laczny dystans wynosi: " + sumDist);
+        System.out.println("\nLaczna koncowa dlugosc kabla wynosi: " + sumDist + " cm");
 
     }
 
