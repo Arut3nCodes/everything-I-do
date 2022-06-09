@@ -1,29 +1,30 @@
+import DataStructures.*;
 import java.util.Objects;
 
 public class Connection{
-    int node1;
-    int node2;
+    Node node1;
+    Node node2;
     int distance;
 
-    public Connection(int node1, int node2, int distance){
+    public Connection(Node node1, Node node2, int distance){
         setNode1(node1);
         setNode2(node2);
         setDistance(distance);
     }
 
-    public int getNode1() {
+    public Node getNode1() {
         return node1;
     }
 
-    public void setNode1(int node1) {
+    public void setNode1(Node node1) {
         this.node1 = node1;
     }
 
-    public int getNode2() {
+    public Node getNode2() {
         return node2;
     }
 
-    public void setNode2(int node2) {
+    public void setNode2(Node node2) {
         this.node2 = node2;
     }
 
@@ -40,11 +41,15 @@ public class Connection{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Connection that = (Connection) o;
-        return node1 == that.node1 && node2 == that.node2 && distance == that.distance;
+        return Objects.equals(node1, that.node1) && Objects.equals(node2, that.node2);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(node1, node2, distance);
+        return Objects.hash(node1, node2);
+    }
+
+    public String toString(){
+        return getNode1().getId() + " " + getNode2().getId() + " " + getDistance();
     }
 }

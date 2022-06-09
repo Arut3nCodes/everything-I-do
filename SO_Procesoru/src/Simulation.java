@@ -43,8 +43,10 @@ public class Simulation {
 
         Strategy1 str1 = new Strategy1(proc1, tasks1, N, p, z);
 
+        fixFreq();
         ArrayList<Processor> proc2 = copy(processors);
         ArrayList<Process> tasks2 = copyo(tasks);
+
 
         Strategy2 str2 = new Strategy2(proc2, tasks2, N, p);
 

@@ -5,8 +5,8 @@ public class Node {
     int id;
     String nazwaMiasta;
     int distance;
-    OneWayListWithHead<Node> shortestPath;
-    OneWayListWithHead<NodeWithPath> neighbouringNodes;
+    OneWayListWithHead <Node> shortestPath;
+    OneWayListWithHead <NodeWithPath> neighbouringNodes;
 
     public class NodeWithPath {
         Node node;
